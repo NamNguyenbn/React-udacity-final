@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { handleClickVote } from "../actions/question";
-
+import {useEffect} from "react";
 import Login from "./Login";
 
 const withRouter = (Component) => {
@@ -18,7 +18,14 @@ const withRouter = (Component) => {
 };
 const QuestionDetail = ({ authenUser, selectedQuestion, author, isVoted, votedOption }) => {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+        if(selectedQuestion == null) {
+            navigate("*");
+        }
+      }, [])
 
     function caculatePercent(voteId) {
         let total = selectedQuestion.optionOne.votes.length + selectedQuestion.optionTwo.votes.length;
@@ -31,9 +38,9 @@ const QuestionDetail = ({ authenUser, selectedQuestion, author, isVoted, votedOp
     };
     const voteOption = (option) => {
         return dispatch(handleClickVote(selectedQuestion.id, authenUser.currentUser[0], option));
+    };
 
-    }
-    return (
+    return selectedQuestion == null ?("") : (
         <div>
             <h4>Question Detail</h4>
             <div className="container">
@@ -88,7 +95,7 @@ const mapStateToProps = ({ authenUser, listUser, question }, { props }) => {
         return {
             authenUser: authenUser,
             selectedQuestion: selectedQuestion,
-            author: Object.values(listUser).find(_ => _.id === selectedQuestion.author),
+            author: selectedQuestion == null ? null : Object.values(listUser).find(_ => _.id === selectedQuestion.author),
             isVoted: listUser[authenUser.currentUser[0].id].answers[id.toString()] == null ? false : true,
             votedOption: listUser[authenUser.currentUser[0].id].answers[id.toString()]
         };

@@ -9,6 +9,9 @@ import LeaderBoard from "./LeaderBoard";
 import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import QuestionDetail from "./QuestionDetail";
+import Login from "./Login";
+import RequireAuth from "../ProtectRouter/ProtectRouter";
+import PageNotFound from "./PageNotFound";
 const App = (props) => {
 
   useEffect(() => {
@@ -24,10 +27,12 @@ const App = (props) => {
         <Nav />
       {props.loading === true ? null : (
           <Routes>
-            <Route path="/" exact element={<Dashboard />} />
-            <Route path="/leaderboard" element={<LeaderBoard />} />
-            <Route path="/new" element={<NewQuestion />} />
-            <Route path="/questions/:id" element={<QuestionDetail />} />
+            <Route path="/" exact element={<RequireAuth><Dashboard /></RequireAuth>} />
+            <Route path="/leaderboard" element={<RequireAuth><LeaderBoard /></RequireAuth>} />
+            <Route path="/new" element={<RequireAuth><NewQuestion /></RequireAuth>} />
+            <Route path="/questions/:id" element={<RequireAuth><QuestionDetail /></RequireAuth>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<RequireAuth><PageNotFound /></RequireAuth>} />
           </Routes>
         )}
       </div>

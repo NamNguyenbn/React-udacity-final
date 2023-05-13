@@ -5,17 +5,17 @@ import { handleCreateQuestion } from "../actions/question";
 import { useState } from "react";
 import Login from "./Login";
 
-const withRouter = (Component) => {
-  const ComponentWithRouterProp = ({ props }) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    let isLogin = useSelector(_ => _.authenUser.isLogin);
-    return isLogin ? <Component {...props} props={{ location, navigate, params }} /> : <Login />;
-  };
+// const withRouter = (Component) => {
+//   const ComponentWithRouterProp = ({ props }) => {
+//     let location = useLocation();
+//     let navigate = useNavigate();
+//     let params = useParams();
+//     let isLogin = useSelector(_ => _.authenUser.isLogin);
+//     return isLogin ? <Component {...props} props={{ location, navigate, params }} /> : <Login />;
+//   };
 
-  return ComponentWithRouterProp;
-};
+//   return ComponentWithRouterProp;
+// };
 const NewQuestion = (props) => {
 
   const navigate = useNavigate();
@@ -75,4 +75,4 @@ const mapStateToProps = ({ authenUser }) => {
   }
 };
 
-export default withRouter(connect(mapStateToProps)(NewQuestion));
+export default connect(mapStateToProps)(NewQuestion);

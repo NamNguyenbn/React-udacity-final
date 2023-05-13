@@ -30,3 +30,17 @@
 .img-nav{
   width: 50px;
 }
+#div-toggle{
+  margin-bottom: 25px;
+}
+#div-toggle input{
+margin-right: 10px !important;
+width: 20px;
+height: 20px;
+}
+#div-toggle label{
+  margin-right: 10px !important;
+  font-weight: bold;
+  font-size: 18px;
+  color: #f53030;
+  }

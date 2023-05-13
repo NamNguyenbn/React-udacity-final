@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { login } from "../API/app"
 import { useDispatch, connect } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { loginAction } from "../actions/authenUser";
 const Login = (props) => {
 
     const navigate = useNavigate();
-
+    const location = useLocation();
     const onClickLogin = (user) => {
         login(user.id, user.password).then(_ => {
             if (_.message == "Login success!") {
                 props.dispatch(loginAction(_.user));
-                navigate(`/`);
+                navigate(location.state == null ? '/' : location.state.path);
             }
         });
     };

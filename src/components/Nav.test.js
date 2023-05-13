@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import middleware from "../middleware";
 
 describe("ComponentNav", () => {
-it("check nav", () => {
+it("check nav 1", () => {
     const store = createStore(reducer, middleware);
     var comp = render(
         <Provider store={store}>
@@ -18,7 +18,7 @@ it("check nav", () => {
         </Provider>);
     expect(comp.getByTestId('NavHomeId')).toBeInTheDocument();
 });
-it("check nav", () => {
+it("check nav 2", () => {
     const store = createStore(reducer, middleware);
     var comp = render(
         <Provider store={store}>
@@ -28,7 +28,7 @@ it("check nav", () => {
         </Provider>);
     expect(comp.getByTestId('NavLeaderBoardId')).toBeInTheDocument();
 });
-it("check nav", () => {
+it("check nav 3", () => {
     const store = createStore(reducer, middleware);
     var comp = render(
         <Provider store={store}>

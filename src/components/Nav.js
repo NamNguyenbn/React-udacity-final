@@ -9,7 +9,7 @@ const Nav = (props) => {
 
   return (
     <div className="container row">
-      <nav className="nav col-md-9">
+      <nav className="nav col-md-9 col-sm-9 col-xs-9">
         <ul className="list-group list-group-horizontal-md">
           <li className="list-group-item">
             <Link data-testid="NavHomeId" to="/">Home</Link>
@@ -24,7 +24,7 @@ const Nav = (props) => {
       </nav>
       {
         props.authenUser.isLogin ? (
-          <div className="col-md-3">
+          <div className="col-md-3 col-sm-3 col-xs-3">
             <img className="img-nav" src={props.authenUser.currentUser[0].avatarURL} />
             <span style={{marginRight: "25px"}}>{props.authenUser.currentUser[0].id}</span>
             <button className="btn btn-danger" onClick={() => onClickLogout()}>Logout</button>
